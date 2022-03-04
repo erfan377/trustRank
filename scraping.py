@@ -1,7 +1,10 @@
+from base64 import urlsafe_b64encode
+from attr import attr
 import requests
 from bs4 import BeautifulSoup
 import fire
 import json
+from selenium import webdriver
 
 
 def gecko_nft(name='gecko_nft'):
@@ -88,6 +91,76 @@ def gecko_spot(name='gecko_spot'):
     print(exchg_dict)
     with open(name + '.json', 'w') as fp:
         json.dump(exchg_dict, fp,  indent=4)
+
+
+def dapp_rank(name='dappradar_'):
+
+    import time
+    from bs4 import BeautifulSoup
+    from selenium import webdriver
+    from webdriver_manager.chrome import ChromeDriverManager
+    import pandas as pd
+
+    # data = []
+
+    link_list = []
+    for page in range(1, 396):
+        url = "https://dappradar.com/rankings/{page}".format(
+            page=page)
+
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.maximize_window()
+        time.sleep(8)
+        driver.get(url)
+        time.sleep(10)
+
+        soup = BeautifulSoup(driver.page_source, 'lxml')
+        driver.close()
+        table = soup.find('div', attrs={
+            'sc-jHwEXd bJCvGT rankings-table'})
+        rows = table.find_all('a')
+        dict_name = {}
+        for row in rows:
+            try:
+                surl = 'https://dappradar.com' + row.attrs['href']
+                link_list.append(surl)
+                driver = webdriver.Chrome(ChromeDriverManager().install())
+                driver.maximize_window()
+                time.sleep(8)
+                driver.get(surl)
+                time.sleep(10)
+                soup = BeautifulSoup(driver.page_source, 'lxml')
+                title_box = soup.find('div', attrs={'class':
+                                                    'article-page__brand-info'})
+                title = title_box.find('h1').text
+                twitter_url = ''
+                discord_url = ''
+                address_tag = ''
+
+                try:
+                    address_tag = soup.find(
+                        'a', attrs={'class': 'sc-gCEpsI eRYsQQ'}).attrs['href']
+                except:
+                    print('no address')
+                # print('address_tag', address_tag)
+                # socials = soup.find('div', attrs={'class':
+                #                                   'article-page__social'})
+
+                try:
+                    twitter = soup.find('div', attrs={'data-original-title':
+                                                      'twitter'})
+                    twitter_url = twitter.find('a').attrs['href']
+                    discord = soup.find('div', attrs={'data-original-title':
+                                                      'discord'})
+                    discord_url = discord.find('a').attrs['href']
+                except:
+                    print('didnt get twitter')
+                dict_name[title] = {'website': address_tag,
+                                    'twitter': twitter_url, 'discord': discord_url}
+            except:
+                print('furl', url)
+        with open(name + str(page) + '.json', 'w') as fp:
+            json.dump(dict_name, fp,  indent=4)
 
 
 if __name__ == '__main__':
