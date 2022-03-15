@@ -5,11 +5,13 @@ import json
 import time
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from os import listdir
+from os import access, listdir
 from os.path import isfile, join
 from urllib.parse import urlparse
 from selenium.webdriver.common.by import By
 import re
+import tweepy
+from constants import *
 
 
 def gecko_nft(name='gecko_nft'):
@@ -288,7 +290,7 @@ def coinmarket_nft(name='coin_nft'):
 
         driver.get(url)
         # you have to scroll down to get the
-        for i in range(10):
+        for i in range(1, 10):
             driver.execute_script(
                 "window.scrollTo(0, {num}*document.body.scrollHeight/{denum});".format(num=i, denum=10))
         soup = BeautifulSoup(driver.page_source, 'html.parser')
@@ -312,10 +314,11 @@ def coinmarket_nft(name='coin_nft'):
         json.dump(export, fp,  indent=4)
 
 
-def aggregate(path, new_path='final'):
+def aggregate(path, new_path='all'):
     files = [f for f in listdir(path) if isfile(join(path, f))]
     if '.DS_Store' in files:
         files.remove('.DS_Store')
+
     dict_all = {}
     for item in files:
         print(item)
@@ -342,8 +345,8 @@ def aggregate(path, new_path='final'):
                 dict_all[netloc] = {'name': {name},
                                     'sources': {data['source']},
                                     'chain': set(),
-                                    'twitter': '',
-                                    'discord': ''}
+                                    'twitter': None,
+                                    'discord': None}
             else:
                 # if we have seen the netloc we just add the new source we're getting it from
                 dict_all[netloc]['sources'].add(data['source'])
@@ -352,9 +355,11 @@ def aggregate(path, new_path='final'):
                     dict_all[netloc]['name'].add(name)
             # we use update for twitter and discord since there shouldn't be more than one link for each
             # for chain we actually add new chain values to existing values
-            if twitter != '':
-                dict_all[netloc].update({'twitter': twitter})
-            if discord != '':
+            if twitter != "":
+                tweety = twitter_fetch(twitter)
+                dict_all[netloc].update(
+                    {'twitter': {"link": twitter, "data": tweety}})
+            if discord != "":
                 dict_all[netloc].update({'discord': discord})
             if len(chain) != 0:
                 dict_all[netloc]['chain'].update(chain)
@@ -368,6 +373,33 @@ def aggregate(path, new_path='final'):
     del dict_all[""]  # edge data due to try: except: so we just delete it
     with open(new_path + '.json', 'w') as fp:
         json.dump(dict_all, fp,  indent=4)
+
+
+def twitter_fetch(url):
+
+    auth = tweepy.OAuth1UserHandler(
+        consumer_key=CONSUMER_KEY,
+        consumer_secret=CONSUMER_SECRET,
+        access_token=ACCESS_TOKEN,
+        access_token_secret=ACCESS_TOKEN_SECRET
+    )
+
+    api = tweepy.API(auth, wait_on_rate_limit=True)
+
+    try:
+        name = urlparse(url).path[1:]  # curring the / at beginning of path
+        user = api.get_user(screen_name=name)
+        follower_cnt = user._json["followers_count"]
+        link_list = []  # usually it's just one url, but in case we need to add to it
+        try:
+            for item in user._json["entities"]["url"]["urls"]:
+                link_list.append(item["expanded_url"])
+        except:
+            print('couldnt fetch link from twitter')
+        return {"follower_cnt":  format(follower_cnt, ","), "link_list": link_list if link_list != [] else None}
+    except Exception as e:
+        print(e)
+        return {"follower_cnt":  None, "link_list": None}
 
 
 if __name__ == '__main__':
