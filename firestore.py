@@ -3,25 +3,45 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 from constants import *
 import json
+import fire
 
-cred = credentials.Certificate('fromfs.json')
-firebase_admin.initialize_app(cred, {
-    'projectId': "lighthouse-758b0",
-})
 
-db = firestore.client()
+def filter(load_name, save_name="filtered_all"):
+    f = open(load_name)
+    data = json.load(f)
+    filtered_data = {}
+    i = 0
+    for url in data:
+        detail = data[url]
+        if len(detail["sources"]) > 2:
+            filtered_data[url] = detail
+            i += 1
+    print(i)
+    with open(save_name + '.json', 'w') as fp:
+        json.dump(filtered_data, fp,  indent=4)
 
 
 def upload_safe(name):
+    cred = credentials.Certificate('hexatorch-cabb8-135858617a8b-erfan.json')
+    firebase_admin.initialize_app(cred, {
+        'projectId': FIREBASE_PROJECTID,
+    })
+
+    db = firestore.client()
+
     f = open(name)
     data = json.load(f)
     for url in data:
-        breakpoint()
         detail = data[url]
+        detail["name"].sort()
         documentID = detail["name"][0]
         sources = detail["sources"]
-        doc_ref = db.collection(u'cities').document(documentID)
+        doc_ref = db.collection(u'approved_links').document(documentID)
         doc_ref.set(
             {"URLs": [{"URL": url, "Source": sources}]}
         )
         print('Uploaded', url, documentID)
+
+
+if __name__ == '__main__':
+    fire.Fire()
