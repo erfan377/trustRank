@@ -113,16 +113,19 @@ def gecko_spot(name='gecko_spot'):
 def dapp_rank(name='dappradar_'):
 
     # open the ranking list go through each row of the table
-    driver = webdriver.Chrome(ChromeDriverManager().install())
-    for page in range(1, 3):
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    # driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    for page in range(90, 400):
         url = "https://dappradar.com/rankings/{page}".format(
             page=page)
 
         driver.get(url)
 
+        time.sleep(5)
         soup = BeautifulSoup(driver.page_source, 'lxml')
-        driver.close()
-
+        time.sleep(5)
         # This parts needs to be updated whenever we fetch because the change the class name
         table = soup.find('div', attrs={
             'sc-bOtlzW lwvxT rankings-table'})
@@ -140,7 +143,12 @@ def dapp_rank(name='dappradar_'):
                 chain_list = []
                 for chain in chains:
                     chain_list.append(chain.text)
-                driver = webdriver.Chrome(ChromeDriverManager().install())
+                options = webdriver.ChromeOptions()
+                options.add_experimental_option(
+                    'excludeSwitches', ['enable-logging'])
+                # driver = webdriver.Chrome(options=options)
+                driver = webdriver.Chrome(
+                    ChromeDriverManager().install(), options=options)
                 driver.get(surl)
                 soup = BeautifulSoup(driver.page_source, 'lxml')
 
@@ -178,11 +186,11 @@ def dapp_clean(path, new_path):
     if '.DS_Store' in files:  # sometimes we get this file
         files.remove('.DS_Store')
     files.sort()  # to go from first page
-    driver = webdriver.Chrome(ChromeDriverManager().install())
 
     for item in files:
         f = open(path + "/" + item)
         data = json.load(f)
+        driver = webdriver.Chrome(ChromeDriverManager().install())
 
         for name in data.keys():
             url = data[name]['website']
@@ -193,8 +201,10 @@ def dapp_clean(path, new_path):
                 data[name]['website'] = new_url
             except:
                 # if can't load the url delete the key
-                del data[name]
+                data[name]['website'] = ""
                 print('didn work')
+            driver.close()
+
         export = {'source': 'DappRadar', 'websites': data}
         with open(new_path + '/' + item, 'w') as fp:
             json.dump(export, fp,  indent=4)
@@ -229,7 +239,6 @@ def cryptoslam(name='cryptoslam'):
 
                 chain = row.find(
                     'img', attrs={'class': 'marketplace-sale-icon marketplace-sale-icon--image'}).attrs['data-original-title']
-
             except:
                 print('didnot work')
             dict_name[title] = {'website': address_tag,
@@ -285,14 +294,16 @@ def coinmarket_nft(name='coin_nft'):
 
     dict_name = {}
     driver = webdriver.Chrome(ChromeDriverManager().install())
-    for page in range(1, 2):
+    for page in range(1, 21):
         url = 'https://coinmarketcap.com/nft/collections/?page='+str(page)
 
         driver.get(url)
         # you have to scroll down to get the
-        for i in range(1, 10):
+        time.sleep(3)
+        for i in range(1, 21):
             driver.execute_script(
                 "window.scrollTo(0, {num}*document.body.scrollHeight/{denum});".format(num=i, denum=10))
+            time.sleep(0.5)
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         table = soup.find('tbody')  # getting the table
         for row in table:
