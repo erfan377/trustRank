@@ -3,6 +3,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 from constants import *
 import json
+from urllib.parse import urlparse
 import fire
 
 
@@ -41,6 +42,30 @@ def upload_safe(name):
             {"URLs": [{"URL": url, "Source": sources}]}
         )
         print('Uploaded', url, documentID)
+
+
+def upload_safe_man(name):
+    cred = credentials.Certificate('hexatorch-cabb8-135858617a8b-erfan.json')
+    firebase_admin.initialize_app(cred, {
+        'projectId': FIREBASE_PROJECTID,
+    })
+
+    db = firestore.client()
+
+    f = open(name)
+    data = json.load(f)
+    data = data["arr"]
+    for item in data:
+        # breakpoint()
+        documentID = item["name"]
+        for url in item["url"]:
+            netloc = urlparse(url).netloc
+            sources = ["manual"]
+            doc_ref = db.collection(u'approved_links').document(documentID)
+            doc_ref.set(
+                {"URLs": [{"URL": netloc, "Source": sources}]}
+            )
+            print('Uploaded', url, documentID)
 
 
 if __name__ == '__main__':
