@@ -1,5 +1,8 @@
 # Web3 Scrapers
 
+## Keys
+Get the api key files (`hexatorch-erfan.json`, `constants.py`) from drive and add them to the folder.
+
 ## How to use scraping
 
 command: `python scraping.py [function name] [optional: name of file]`
