@@ -29,7 +29,7 @@ def filter(load_name, save_name="filtered_all"):
         json.dump(filtered_data, fp,  indent=4)
 
 
-def add_data_online(documentID, netloc, sources, url_to_name, name_to_url, db):
+def add_data_online(documentID, netloc, sources, url_to_name, name_to_url, db, appending=False):
     # if url or name exists in the firestore, resolve the issue
     if netloc in url_to_name or documentID in name_to_url:
         # existing data in firestore
@@ -67,17 +67,20 @@ def add_data_online(documentID, netloc, sources, url_to_name, name_to_url, db):
         elif val == 'a':
             doc_ref = db.collection(
                 u'approved_links').document(documentID)
-            doc_ref.update(
-                {u"URLs": firestore.ArrayUnion([{"URL": netloc, "Source": sources}])})
+            doc_ref.set(
+                {u"URLs": firestore.ArrayUnion([{"URL": netloc, "Source": sources}])}, merge=True)
         # do nothing
         elif val == 's':
             pass
 
     else:
         doc_ref = db.collection(u'approved_links').document(documentID)
-        doc_ref.set(
-            {"URLs": [{"URL": netloc, "Source": sources}]}
-        )
+        if appending:
+            doc_ref.set(
+                {u"URLs": firestore.ArrayUnion([{"URL": netloc, "Source": sources}])}, merge=True)
+        else:
+            doc_ref.set(
+                {"URLs": [{"URL": netloc, "Source": sources}]}, merge=True)
         print('Uploaded', netloc, documentID)
 
 
@@ -157,11 +160,13 @@ def upload_safe_man(name, key_file="hexatorch-erfan.json"):
 
     for item in data:
         documentID = item["name"]
+        appending = False
         for url in item["url"]:
             # the url should be complete in json and should not be in netloc format
             netloc = urlparse(url).netloc
             add_data_online(documentID, netloc, [
-                            "manual"], url_to_name, name_to_url, db)
+                            "manual"], url_to_name, name_to_url, db, appending)
+            appending = True
 
 
 if __name__ == '__main__':
