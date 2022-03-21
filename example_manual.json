@@ -1,0 +1,24 @@
+{
+    "arr": [
+        {
+            "name": "Algebra",
+            "url": [
+                "https://app.algebra.finance/#/swap"
+            ]
+        },
+        {
+            "name": "Protocol Labs",
+            "url": [
+                "https://protocol.ai/"
+            ]
+        },
+        {
+            "name": "KlimaDAO",
+            "url": [
+                "https://www.klimadao.finance/",
+                "https://dapp.klimadao.finance/#/stake"
+            ]
+        }
+
+    ]
+}

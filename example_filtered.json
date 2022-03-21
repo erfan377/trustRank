@@ -1,0 +1,1561 @@
+{
+    "ethermore.xyz": {
+        "name": [
+            "Ethermore"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/ethermorelore",
+            "data": {
+                "follower_cnt": "4,257",
+                "link_list": [
+                    "http://ethermore.xyz"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/ntwmxwWTfX",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "svs.gg": {
+        "name": [
+            "Sneaky Vampire",
+            "Sneaky Bat Syndicate",
+            "Sneaky Vampiress Syndicate",
+            "Sneaky Vampire Syndicate"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/svsnft",
+            "data": {
+                "follower_cnt": "112,406",
+                "link_list": [
+                    "https://opensea.io/collection/sneaky-vampire-syndicate"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/svsnft",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "onchainmonkey.com": {
+        "name": [
+            "OCM Dessert",
+            "OnChainMonkey"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/OnChainMonkey",
+            "data": {
+                "follower_cnt": "16,099",
+                "link_list": [
+                    "https://linktr.ee/OnChainMonkey"
+                ]
+            }
+        },
+        "discord": "https://discord.gg/ocm",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "worldofwomen.art": {
+        "name": [
+            "World Of Women"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/worldofwomennft",
+            "data": {
+                "follower_cnt": "132,165",
+                "link_list": [
+                    "http://discord.gg/worldofwomen"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/worldofwomen",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "cryptomories.iwwon.com": {
+        "name": [
+            "Fast Food Nouns",
+            "CryptoMories"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/CryptoMories",
+            "data": {
+                "follower_cnt": "51,538",
+                "link_list": [
+                    "https://linktr.ee/cryptomories"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/tBcT9tGFvv",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "bubblegumkids.xyz": {
+        "name": [
+            "Bubblegum Kids"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/bubblegumkids_",
+            "data": {
+                "follower_cnt": "16,830",
+                "link_list": [
+                    "http://bubblegumkids.xyz"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/zBF75NPY3f",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "pancakeswap.finance": {
+        "name": [
+            "PancakeSwap",
+            "PancakeSwap (V2)"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/pancakeswap",
+            "data": {
+                "follower_cnt": "1,510,974",
+                "link_list": [
+                    "https://pancakeswap.finance"
+                ]
+            }
+        },
+        "discord": null,
+        "chain": [
+            "BSC"
+        ]
+    },
+    "spookyswap.finance": {
+        "name": [
+            "SpookySwap"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/SpookySwap",
+            "data": {
+                "follower_cnt": "91,038",
+                "link_list": [
+                    "https://spookyswap.finance"
+                ]
+            }
+        },
+        "discord": "http://discord.gg/AqbsWsWDgn",
+        "chain": [
+            "FANTOM"
+        ]
+    },
+    "quickswap.exchange": {
+        "name": [
+            "QuickSwap"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/QuickswapDEX",
+            "data": {
+                "follower_cnt": "69,241",
+                "link_list": [
+                    "https://quickswap.exchange"
+                ]
+            }
+        },
+        "discord": null,
+        "chain": [
+            "Polygon"
+        ]
+    },
+    "ethereals.wtf": {
+        "name": [
+            "ETHEREALS WTF"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/Etherealswtf",
+            "data": {
+                "follower_cnt": "11,773",
+                "link_list": [
+                    "http://linktr.ee/etherealswtf"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/etherealswtf",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "flyfrogs.xyz": {
+        "name": [
+            "Fly Frogs"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/FlyFrogsNFT",
+            "data": {
+                "follower_cnt": "5,694",
+                "link_list": [
+                    "https://flyfrogs.xyz/"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/flyfogs",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "www.azuki.com": {
+        "name": [
+            "Azuki"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/azukizen",
+            "data": {
+                "follower_cnt": "227,472",
+                "link_list": [
+                    "http://azuki.com"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/azuki",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "www.sandbox.game": {
+        "name": [
+            "The Sandbox Marketplace",
+            "The Doggies (Snoop Dogg)",
+            "The Sandbox",
+            "GAMEBOX",
+            "LAND"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/thesandboxgame",
+            "data": {
+                "follower_cnt": "890,620",
+                "link_list": [
+                    "http://register.sandbox.game"
+                ]
+            }
+        },
+        "discord": "https://discordapp.com/invite/vAe4zvY",
+        "chain": [
+            "Solana",
+            "ETH"
+        ]
+    },
+    "app.algebra.finance": {
+        "name": [
+            "Algebra",
+            "Algebra finance"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/CryptoAlgebra",
+            "data": {
+                "follower_cnt": "10,299",
+                "link_list": [
+                    "http://algebra.finance"
+                ]
+            }
+        },
+        "discord": "https://discord.gg/VvB2A823px",
+        "chain": [
+            "Polygon"
+        ]
+    },
+    "roguesociety.io": {
+        "name": [
+            "The Rogue Society",
+            "Rogue Society",
+            "Rogue Society Bot"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/roguesocietynft",
+            "data": {
+                "follower_cnt": "40,164",
+                "link_list": [
+                    "http://roguesociety.io"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/CEpcFAsKp9",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "www.treeverse.net": {
+        "name": [
+            "Treeverse Plots",
+            "Treeverse",
+            "Nftrees",
+            "Timeless NFTs"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/thetreeverse",
+            "data": {
+                "follower_cnt": "72,535",
+                "link_list": [
+                    "https://discord.gg/treeverse"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/twCA2dQZCG",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "capsulehouse.io": {
+        "name": [
+            "Capsule House"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/capsule_house",
+            "data": {
+                "follower_cnt": "28,280",
+                "link_list": [
+                    "https://linktr.ee/capsulehouse"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/eZTKm6EBRq",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "boredapeyachtclub.com": {
+        "name": [
+            "Bored Ape Yacht Club",
+            "Bored Ape Kennel Club"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinMarketCap",
+            "CoinGecko"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/boredapeychttps://twitter.com/boredapeyc",
+            "data": {
+                "follower_cnt": null,
+                "link_list": null
+            }
+        },
+        "discord": "https://discord.com/invite/wjH7hGz2yS",
+        "chain": [
+            "ETH",
+            "Ethereum"
+        ]
+    },
+    "doodles.app": {
+        "name": [
+            "Doodles",
+            "Space Doodles"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/doodles",
+            "data": {
+                "follower_cnt": "290,861",
+                "link_list": [
+                    "https://doodles.app"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/doodles",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "www.larvalabs.com": {
+        "name": [
+            "Autoglyphs",
+            "CryptoPunks"
+        ],
+        "sources": [
+            "CoinMarketCap",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/larvalabs",
+            "data": {
+                "follower_cnt": "177,521",
+                "link_list": [
+                    "http://larvalabs.com"
+                ]
+            }
+        },
+        "discord": "http://discord.gg/4JMAauFZBq",
+        "chain": [
+            "Ethereum"
+        ]
+    },
+    "www.rtfkt.com": {
+        "name": [
+            "RTFKT Capsule Space Drip 1.2",
+            "CLONE X",
+            "CLONE X - X TAKASHI MURAKAMI",
+            "CloneX"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/rtfktstudios",
+            "data": {
+                "follower_cnt": "305,044",
+                "link_list": [
+                    "http://rtfkt.com/"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/RTFKT",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "veefriends.com": {
+        "name": [
+            "VeeFriends",
+            "BOOK GAMES by VeeFriends"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/veefriends",
+            "data": {
+                "follower_cnt": "202,048",
+                "link_list": [
+                    "http://garyvee.com/discord"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/veefriends",
+        "chain": [
+            "Ethereum",
+            "IMMUTABLE X",
+            "ETH"
+        ]
+    },
+    "cryptoadz.io": {
+        "name": [
+            "CrypToadz"
+        ],
+        "sources": [
+            "CoinMarketCap",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/cryptoadzNFT",
+            "data": {
+                "follower_cnt": "43,512",
+                "link_list": [
+                    "https://opensea.io/collection/cryptoadz-by-gremplin"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/8QtAYPgjAw",
+        "chain": [
+            "Ethereum"
+        ]
+    },
+    "thedogepoundnft.com": {
+        "name": [
+            "Doge Pound Puppies",
+            "The Doge Pound"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/TheDogePoundNFT",
+            "data": {
+                "follower_cnt": "195,070",
+                "link_list": [
+                    "https://linktr.ee/TheDogePound"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/6xEq5wxR6M",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "byopills.com": {
+        "name": [
+            "BYO Land",
+            "BYOKEY",
+            "BYOPills"
+        ],
+        "sources": [
+            "CoinMarketCap",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/byopills",
+            "data": {
+                "follower_cnt": "34,904",
+                "link_list": [
+                    "http://byopills.com"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/byopills",
+        "chain": [
+            "Ethereum"
+        ]
+    },
+    "ezek.io": {
+        "name": [
+            "PhantaBear",
+            "Phanta Bear"
+        ],
+        "sources": [
+            "CoinMarketCap",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/EzekClub",
+            "data": {
+                "follower_cnt": "62,886",
+                "link_list": [
+                    "https://linktr.ee/EzekClub"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/ezekclub",
+        "chain": [
+            "Ethereum"
+        ]
+    },
+    "themekaverse.com": {
+        "name": [
+            "MekaVerse"
+        ],
+        "sources": [
+            "CoinMarketCap",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/MekaVerse",
+            "data": {
+                "follower_cnt": "266,554",
+                "link_list": [
+                    "https://lynkfire.com/TheMekaVerse"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/mekaverse",
+        "chain": [
+            "Ethereum"
+        ]
+    },
+    "www.chainrunners.xyz": {
+        "name": [
+            "Chain Runners",
+            "Chain Runners NFT"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/chain_runners",
+            "data": {
+                "follower_cnt": "13,890",
+                "link_list": [
+                    "http://chainrunners.xyz"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/f3sk2u4uKN",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "avastars.io": {
+        "name": [
+            "Avastars"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/AvaStarsNFT",
+            "data": {
+                "follower_cnt": "25,246",
+                "link_list": [
+                    "https://avastars.io"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/avastars",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "zipcy.io": {
+        "name": [
+            "Zipcy's SuperNormal"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/zipcy8888",
+            "data": {
+                "follower_cnt": "55,270",
+                "link_list": [
+                    "https://opensea.io/collection/supernormalbyzipcy"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/xDhvz3S5ND",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "sipher.xyz": {
+        "name": [
+            "Sipherian Inu",
+            "Sipherian Surge",
+            "Sipherian Flash"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinMarketCap",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/SIPHERxyz",
+            "data": {
+                "follower_cnt": "108,115",
+                "link_list": [
+                    "https://linktr.ee/sipherxyz"
+                ]
+            }
+        },
+        "discord": "https://discord.gg/sipherxyz",
+        "chain": [
+            "ETH",
+            "Ethereum"
+        ]
+    },
+    "www.stonercats.com": {
+        "name": [
+            "Stoner Cats"
+        ],
+        "sources": [
+            "CoinMarketCap",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/stonercatstv",
+            "data": {
+                "follower_cnt": "33,024",
+                "link_list": [
+                    "https://www.stonercats.com"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/ZNEJXWgbwD",
+        "chain": [
+            "Ethereum"
+        ]
+    },
+    "www.thehashmasks.com": {
+        "name": [
+            "Hashmasks"
+        ],
+        "sources": [
+            "CoinMarketCap",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/TheHashmasks",
+            "data": {
+                "follower_cnt": "34,382",
+                "link_list": [
+                    "https://linktr.ee/hashmasks"
+                ]
+            }
+        },
+        "discord": "http://discord.gg/hashmasks",
+        "chain": [
+            "Ethereum"
+        ]
+    },
+    "feudalz.io": {
+        "name": [
+            "Feudalz"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/feudalznft",
+            "data": {
+                "follower_cnt": "29,752",
+                "link_list": [
+                    "https://feudalz.io/"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/zZJDyNSg5E",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "www.pudgypenguins.io": {
+        "name": [
+            "Lil Pudgys",
+            "LilPudgys",
+            "Pudgy Penguins"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/pudgy_penguins",
+            "data": {
+                "follower_cnt": "56,120",
+                "link_list": [
+                    "https://linktr.ee/pudgy_penguins"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/hmFDyqQXkB",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "partydegenerates.com": {
+        "name": [
+            "PartyDegenerates",
+            "Party Degenerates"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinMarketCap",
+            "CoinGecko"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/partydegens",
+            "data": {
+                "follower_cnt": "23,861",
+                "link_list": [
+                    "https://linktr.ee/partydegenerates"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/partydegenerates",
+        "chain": [
+            "ETH",
+            "Ethereum"
+        ]
+    },
+    "www.animetas.io": {
+        "name": [
+            "Animonkeys",
+            "Animetas"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/Animetas1",
+            "data": {
+                "follower_cnt": "42,464",
+                "link_list": [
+                    "http://www.animetas.io"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/aTtnzTt7xR",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "koalaintelligence.agency": {
+        "name": [
+            "Koala Intelligence",
+            "Koala Intelligence Agency"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/KoalaAgencyNFT",
+            "data": {
+                "follower_cnt": "32,269",
+                "link_list": [
+                    "https://koalaintelligence.agency"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/5nXant3kBy",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "www.spacepunks.club": {
+        "name": [
+            "SpacePunksClub",
+            "Space Punks Club",
+            "Space Punks"
+        ],
+        "sources": [
+            "CoinMarketCap",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/SpacePunksClub",
+            "data": {
+                "follower_cnt": "45,809",
+                "link_list": [
+                    "http://linktr.ee/SpacePunksClub"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/SPC",
+        "chain": [
+            "Ethereum"
+        ]
+    },
+    "junkyarddogs.io": {
+        "name": [
+            "JunkYardDogs"
+        ],
+        "sources": [
+            "CoinMarketCap",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/JunkyardDogsNFT",
+            "data": {
+                "follower_cnt": "17,540",
+                "link_list": [
+                    "https://www.junkyarddogs.io"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/XQRxWJAANt",
+        "chain": [
+            "Ethereum"
+        ]
+    },
+    "foundation.app": {
+        "name": [
+            "Scar Solciety ",
+            "Foundation",
+            "Re-Digitalization of Waves"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/withfnd",
+            "data": {
+                "follower_cnt": null,
+                "link_list": null
+            }
+        },
+        "discord": "https://discord.com/invite/fS9eZVh5b4",
+        "chain": [
+            "Solana",
+            "ETH"
+        ]
+    },
+    "thesevensofficial.com": {
+        "name": [
+            "Sevens",
+            "The Sevens",
+            "The Sevens Companions"
+        ],
+        "sources": [
+            "CoinMarketCap",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/thesevens_7",
+            "data": {
+                "follower_cnt": "57,426",
+                "link_list": [
+                    "https://www.thesevensofficial.com/"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/777-thesevens-777",
+        "chain": [
+            "Ethereum"
+        ]
+    },
+    "gluefactoryshow.com": {
+        "name": [
+            "Glue Factory Show"
+        ],
+        "sources": [
+            "CoinMarketCap",
+            "CoinGecko",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/gluefactoryshow",
+            "data": {
+                "follower_cnt": "6,977",
+                "link_list": [
+                    "https://gluefactoryshow.com/"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/d4jRccSwhF",
+        "chain": [
+            "Ethereum"
+        ]
+    },
+    "newdex.io": {
+        "name": [
+            "Newdex"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/NewdexOfficial",
+            "data": {
+                "follower_cnt": "40,132",
+                "link_list": [
+                    "https://newdex.io"
+                ]
+            }
+        },
+        "discord": null,
+        "chain": [
+            "EOS"
+        ]
+    },
+    "topdogbeachclub.com": {
+        "name": [
+            "Top Dog Beach Club"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/topdogbeachclub",
+            "data": {
+                "follower_cnt": "25,149",
+                "link_list": [
+                    "https://topdogbeachclub.com"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/HDSjuw7ktY",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "www.bakeryswap.org": {
+        "name": [
+            "BakerySwap"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/bakery_swap",
+            "data": {
+                "follower_cnt": "425,366",
+                "link_list": [
+                    "http://bakeryswap.org"
+                ]
+            }
+        },
+        "discord": null,
+        "chain": [
+            "BSC"
+        ]
+    },
+    "crypto.com": {
+        "name": [
+            "Crypto.com DeFi Swap",
+            "DeFi Swap",
+            "Crypto.com Exchange"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/cryptocom",
+            "data": {
+                "follower_cnt": "1,869,473",
+                "link_list": [
+                    "https://crypto.com/price"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/nsp9JTC",
+        "chain": [
+            "ETH"
+        ]
+    },
+    "chillfrogs.io": {
+        "name": [
+            "Chill Princesses",
+            "Chill Frogs NFT",
+            "Chill Frogs"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/chillfrogsnft",
+            "data": {
+                "follower_cnt": "10,255",
+                "link_list": [
+                    "http://chillfrogs.io"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/cPvEspu8WW",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "monsterbuds.io": {
+        "name": [
+            "Monsterbuds"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/MonsterBudsNFT",
+            "data": {
+                "follower_cnt": "10,513",
+                "link_list": [
+                    "http://linktr.ee/monsterbuds"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/tTx79RYQC7",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "trontrade.io": {
+        "name": [
+            "TronTrade"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/trontrade",
+            "data": {
+                "follower_cnt": "18,825",
+                "link_list": [
+                    "http://TronTrade.io"
+                ]
+            }
+        },
+        "discord": null,
+        "chain": [
+            "TRON"
+        ]
+    },
+    "kaijukingz.io": {
+        "name": [
+            "Kaiju Kingz"
+        ],
+        "sources": [
+            "CryptoSlam",
+            "DappRadar",
+            "CoinMarketCap"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/KaijuKingz",
+            "data": {
+                "follower_cnt": "106,885",
+                "link_list": [
+                    "http://kaijukingz.io"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/KaijuKingz",
+        "chain": [
+            "Ethereum",
+            "ETH"
+        ]
+    },
+    "app.sushi.com": {
+        "name": [
+            "SushiSwap",
+            "SushiSwap (xDAI)",
+            "SushiSwap (Fantom)",
+            "Sushi",
+            "SushiSwap (Arbitrum)",
+            "Sushiswap Celo",
+            "SushiSwap (BSC)",
+            "SushiSwap (Harmony)",
+            "SushiSwap (Polygon)",
+            "SushiSwap (Celo)"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/sushiswap",
+            "data": {
+                "follower_cnt": "200,704",
+                "link_list": [
+                    "https://sushi.com"
+                ]
+            }
+        },
+        "discord": null,
+        "chain": [
+            ""
+        ]
+    },
+    "raydium.io": {
+        "name": [
+            "Raydium"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/RaydiumProtocol",
+            "data": {
+                "follower_cnt": "297,034",
+                "link_list": [
+                    "https://raydium.io"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/6EvFwvCfpx",
+        "chain": [
+            "SOLANA"
+        ]
+    },
+    "tokenlon.im": {
+        "name": [
+            "Tokenlon"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/Tokenlon",
+            "data": {
+                "follower_cnt": "11,363",
+                "link_list": [
+                    "https://tokenlon.im/"
+                ]
+            }
+        },
+        "discord": "https://discord.gg/9pQ6hMW",
+        "chain": [
+            "ETH"
+        ]
+    },
+    "app.elk.finance": {
+        "name": [
+            "Elk.Finance (AVAX)",
+            "Elk.Finance (Polygon)",
+            "Elk.Finance (BSC)",
+            "Elk Finance"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/elk_finance",
+            "data": {
+                "follower_cnt": "16,934",
+                "link_list": [
+                    "http://linktr.ee/elk_finance"
+                ]
+            }
+        },
+        "discord": "https://discord.gg/GhfCMsUvej",
+        "chain": [
+            ""
+        ]
+    },
+    "www.cherryswap.net": {
+        "name": [
+            "CherrySwap"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/CherryswapNet",
+            "data": {
+                "follower_cnt": "80,224",
+                "link_list": [
+                    "http://cherryswap.net"
+                ]
+            }
+        },
+        "discord": null,
+        "chain": [
+            "OEC"
+        ]
+    },
+    "nexusmutual.io": {
+        "name": [
+            "Nexus Mutual"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinGecko",
+            "Coinmarket"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/NexusMutual",
+            "data": {
+                "follower_cnt": "39,531",
+                "link_list": [
+                    "https://app.nexusmutual.io/membership"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/aQjkzW5",
+        "chain": [
+            "ETH"
+        ]
+    },
+    "guttercatgang.com": {
+        "name": [
+            "Gutter Cat Gang",
+            "Gutter Pigeons",
+            "Gutter Dogs",
+            "Gutter Rats"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinMarketCap",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/guttercatgang?lang=en",
+            "data": {
+                "follower_cnt": "88,849",
+                "link_list": [
+                    "https://guttercatgang.com/"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/guttercatgang",
+        "chain": [
+            "ETH",
+            "Ethereum"
+        ]
+    },
+    "bricktopians.com": {
+        "name": [
+            "Bricktopians",
+            "Pass the Baton"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinMarketCap",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/bricktopians",
+            "data": {
+                "follower_cnt": "30,183",
+                "link_list": [
+                    "https://linktr.ee/bricktopians"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/bricktopians",
+        "chain": [
+            "ETH",
+            "Ethereum"
+        ]
+    },
+    "nft.habbo.com": {
+        "name": [
+            "Habbo Portraits",
+            "Habbo Avatars"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinMarketCap",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/HabboNFT",
+            "data": {
+                "follower_cnt": "17,611",
+                "link_list": [
+                    "https://nft.habbo.com"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/tCy9T5gNus",
+        "chain": [
+            "ETH",
+            "Ethereum"
+        ]
+    },
+    "www.immadegen.com": {
+        "name": [
+            "WynLambo",
+            "Imma Degen",
+            "The WynLambo",
+            "Visitors of Imma Degen"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinMarketCap",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/ImmaDegen",
+            "data": {
+                "follower_cnt": "20,548",
+                "link_list": [
+                    "http://www.immadegen.com"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/rz6t3uP9hx",
+        "chain": [
+            "ETH",
+            "Ethereum"
+        ]
+    },
+    "fastfoodfren.com": {
+        "name": [
+            "Fast Food Frens",
+            "Fast Food Frens Collection"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinMarketCap",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/fastfoodfrens",
+            "data": {
+                "follower_cnt": "8,027",
+                "link_list": [
+                    "http://linktr.ee/fastfoodfrens"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/gXxJrTWbWj",
+        "chain": [
+            "ETH",
+            "Ethereum"
+        ]
+    },
+    "sorasdreamworld.io": {
+        "name": [
+            "Soras Dreamworld",
+            "Sora's DreamworId"
+        ],
+        "sources": [
+            "DappRadar",
+            "CoinMarketCap",
+            "CryptoSlam"
+        ],
+        "twitter": {
+            "link": "https://twitter.com/Sorasdreamworld",
+            "data": {
+                "follower_cnt": "6,630",
+                "link_list": [
+                    "https://sorasdreamworld.io/"
+                ]
+            }
+        },
+        "discord": "https://discord.com/invite/yVu7uWzmmy",
+        "chain": [
+            "ETH",
+            "Ethereum"
+        ]
+    }
+}
