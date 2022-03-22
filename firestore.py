@@ -21,7 +21,7 @@ def filter(load_name, save_name="filtered_all"):
     for url in data:
         detail = data[url]
         # determined how many sources it should have been appeared in
-        if len(detail["sources"]) > 2:
+        if len(detail["sources"]) > 1:
             filtered_data[url] = detail
             i += 1
     print(i)
@@ -75,7 +75,7 @@ def add_data_online(documentID, netloc, sources, url_to_name, name_to_url, db, a
 
     else:
         doc_ref = db.collection(u'approved_links').document(documentID)
-        if appending:
+        if appending:  # expand the existing array in firestore
             doc_ref.set(
                 {u"URLs": firestore.ArrayUnion([{"URL": netloc, "Source": sources}])}, merge=True)
         else:
@@ -97,19 +97,26 @@ def upload_safe(name, key_file="hexatorch-erfan.json"):
 
     db = firestore.client()
 
-    name_to_url, url_to_name = get_online_data(db)
+    name_to_url, url_to_name = get_online_data(db, 'approved_links')
 
     f = open(name)
     data = json.load(f)
+    names = set()
     for url in data:
         detail = data[url]
         detail["name"].sort(key=len)
         documentID = detail["name"][0]  # Select the shortest name
         sources = detail["sources"]
-        add_data_online(documentID, url, sources, url_to_name, name_to_url, db)
+        if documentID in names:  # means that to add the link to the same name
+            add_data_online(documentID, url, sources,
+                            url_to_name, name_to_url, db, True)
+        else:  # create a new document
+            add_data_online(documentID, url, sources,
+                            url_to_name, name_to_url, db, False)
+            names.add(documentID)
 
 
-def get_online_data(db):
+def get_online_data(db, collection):
     """Read the firestore database and store its values
     in the mapping of URLs to the document they're saved under
     or the mapping of the names to the URLs it contains
@@ -120,22 +127,46 @@ def get_online_data(db):
     Returns:
         dict: name map to its URLs, URL map to name saved under on
     """
-    online_db = db.collection(u'approved_links')
+    online_db = db.collection(collection)
+
+    url_to_name = {}
     name_to_url = {}
-    # reads the database
     for item in online_db.get():
         link_list = []
         for info in item.to_dict()["URLs"]:
             link_list.append(info["URL"])
+            url_to_name[info["URL"]] = item.id
         name_to_url[item.id] = link_list
 
-    # reverses the previous dict
-    url_to_name = {}
-    for item in name_to_url:
-        for url in name_to_url[item]:
-            url_to_name[url] = item
-
     return name_to_url, url_to_name
+
+
+def get_online_stats(key_file="hexatorch-erfan.json"):
+    """Read the firestore database and store its values
+    in the mapping of URLs to the document they're saved under
+    or the mapping of the names to the URLs it contains
+
+    Args:
+        db (_type_): firestore database
+
+    Returns:
+        dict: name map to its URLs, URL map to name saved under on
+    """
+
+    cred = credentials.Certificate(key_file)
+    firebase_admin.initialize_app(cred, {
+        'projectId': FIREBASE_PROJECTID,
+    })
+
+    db = firestore.client()
+
+    name_to_url_safe, url_to_name_safe = get_online_data(db, 'approved_links')
+    name_to_url_bad, url_to_name_bad = get_online_data(db, 'malicious_links')
+
+    print('Number of safe documents', len(name_to_url_safe))
+    print('Number of safe urls', len(url_to_name_safe))
+    print('Number of bad documents', len(name_to_url_bad))
+    print('Number of bad urls', len(url_to_name_bad))
 
 
 def upload_safe_man(name, key_file="hexatorch-erfan.json"):
@@ -150,7 +181,7 @@ def upload_safe_man(name, key_file="hexatorch-erfan.json"):
         'projectId': FIREBASE_PROJECTID,
     })
     db = firestore.client()
-    name_to_url, url_to_name = get_online_data(db)
+    name_to_url, url_to_name = get_online_data(db, 'approved_links')
 
     # format of json should be
     # {arr: [{"name": "NAME OF PROJECT", "url":["HTTPS://URL OF PROJECT"]}]}
