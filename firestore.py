@@ -29,7 +29,7 @@ def filter(load_name, save_name="filtered_all"):
         json.dump(filtered_data, fp,  indent=4)
 
 
-def add_data_online(documentID, netloc, sources, url_to_name, name_to_url, db, appending=False):
+def add_data_online(documentID, netloc, sources, url_to_name, name_to_url, db, document, appending=False):
     # if url or name exists in the firestore, resolve the issue
     if netloc in url_to_name or documentID in name_to_url:
         # existing data in firestore
@@ -58,15 +58,13 @@ def add_data_online(documentID, netloc, sources, url_to_name, name_to_url, db, a
             "\n a for appending " + netloc + " to " + documentID + " list \n s for skip\n" or "s")
         # replace the old name with new URL entry
         if val == 'r':
-            doc_ref = db.collection(
-                u'approved_links').document(documentID)
+            doc_ref = db.collection(document).document(documentID)
             doc_ref.set(
                 {"URLs": [{"URL": netloc, "Source": sources}]}
             )
         # append the new URL to the existing name
         elif val == 'a':
-            doc_ref = db.collection(
-                u'approved_links').document(documentID)
+            doc_ref = db.collection(document).document(documentID)
             doc_ref.set(
                 {u"URLs": firestore.ArrayUnion([{"URL": netloc, "Source": sources}])}, merge=True)
         # do nothing
@@ -74,7 +72,7 @@ def add_data_online(documentID, netloc, sources, url_to_name, name_to_url, db, a
             pass
 
     else:
-        doc_ref = db.collection(u'approved_links').document(documentID)
+        doc_ref = db.collection(document).document(documentID)
         if appending:  # expand the existing array in firestore
             doc_ref.set(
                 {u"URLs": firestore.ArrayUnion([{"URL": netloc, "Source": sources}])}, merge=True)
@@ -84,7 +82,7 @@ def add_data_online(documentID, netloc, sources, url_to_name, name_to_url, db, a
         print('Uploaded', netloc, documentID)
 
 
-def upload_safe(name, key_file="hexatorch-erfan.json"):
+def upload(name, document, key_file="hexatorch-erfan.json"):
     """Upload the curated lists from the JSON filtered from major tracking lists
 
     Args:
@@ -97,7 +95,7 @@ def upload_safe(name, key_file="hexatorch-erfan.json"):
 
     db = firestore.client()
 
-    name_to_url, url_to_name = get_online_data(db, 'approved_links')
+    name_to_url, url_to_name = get_online_data(db, document)
 
     f = open(name)
     data = json.load(f)
@@ -109,10 +107,10 @@ def upload_safe(name, key_file="hexatorch-erfan.json"):
         sources = detail["sources"]
         if documentID in names:  # means that to add the link to the same name
             add_data_online(documentID, url, sources,
-                            url_to_name, name_to_url, db, True)
+                            url_to_name, name_to_url, db, document, True)
         else:  # create a new document
             add_data_online(documentID, url, sources,
-                            url_to_name, name_to_url, db, False)
+                            url_to_name, name_to_url, db, document, False)
             names.add(documentID)
 
 
@@ -169,7 +167,7 @@ def get_online_stats(key_file="hexatorch-erfan.json"):
     print('Number of bad urls', len(url_to_name_bad))
 
 
-def upload_safe_man(name, key_file="hexatorch-erfan.json"):
+def upload_manual(name, document, key_file="hexatorch-erfan.json", ):
     """Add data manually from JSON to the firestore database
 
     Args:
@@ -181,7 +179,7 @@ def upload_safe_man(name, key_file="hexatorch-erfan.json"):
         'projectId': FIREBASE_PROJECTID,
     })
     db = firestore.client()
-    name_to_url, url_to_name = get_online_data(db, 'approved_links')
+    name_to_url, url_to_name = get_online_data(db, document)
 
     # format of json should be
     # {arr: [{"name": "NAME OF PROJECT", "url":["HTTPS://URL OF PROJECT"]}]}
@@ -195,8 +193,9 @@ def upload_safe_man(name, key_file="hexatorch-erfan.json"):
         for url in item["url"]:
             # the url should be complete in json and should not be in netloc format
             netloc = urlparse(url).netloc
+            breakpoint()
             add_data_online(documentID, netloc, [
-                            "manual"], url_to_name, name_to_url, db, appending)
+                            "manual"], url_to_name, name_to_url, db, document, appending)
             appending = True
 
 
