@@ -3,7 +3,7 @@
 ## Keys
 Get the api key files (`hexatorch-erfan.json`, `constants.py`) from drive and add them to the folder.
 
-## How to use scraping
+## How to use the TrustRank
 
 command: `python scraping.py [function name] [optional: name of file]`
 
@@ -20,7 +20,7 @@ function list for fetching data:
 for dappradar you need to clean the data after fetching them. Put the exported jsons in a folder and run the `dapp_clean` function like  
 `python scraping.py dapp_clean [folder containing original jsons] [folder to export the clean jsons into]`
 
-Later you have to put the outputs from all the scraping functions into a folder and run the `aggregate` function.   
+Later you have to put the outputs from all the scraping functions into a folder and run the `aggregate` function to identify which website can be trusted the most   
 `python scraping.py aggregate [path to folder containing all jsons]`
 
 ## How to upload data to Firestore
