@@ -174,6 +174,9 @@ def upload_manual(name, document, key_file="hexatorch-erfan.json", ):
         name (string): JSON path
     """
     # Initializing firestore, provide the correct keys for JSON
+
+    if document != 'approved_links' and document != 'malicious_links':
+        raise('document is not approved_links or malicious_links')
     cred = credentials.Certificate(key_file)
     firebase_admin.initialize_app(cred, {
         'projectId': FIREBASE_PROJECTID,
@@ -193,7 +196,6 @@ def upload_manual(name, document, key_file="hexatorch-erfan.json", ):
         for url in item["url"]:
             # the url should be complete in json and should not be in netloc format
             netloc = urlparse(url).netloc
-            breakpoint()
             add_data_online(documentID, netloc, [
                             "manual"], url_to_name, name_to_url, db, document, appending)
             appending = True

@@ -358,6 +358,8 @@ def aggregate(path, new_path='all'):
                                     'chain': set(),
                                     'twitter': None,
                                     'discord': None}
+                driver = webdriver.Chrome(ChromeDriverManager().install())
+
             else:
                 # if we have seen the netloc we just add the new source we're getting it from
                 dict_all[netloc]['sources'].add(data['source'])
