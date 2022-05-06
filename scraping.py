@@ -1,3 +1,4 @@
+from traceback import TracebackException
 import requests
 from bs4 import BeautifulSoup
 import fire
@@ -110,6 +111,56 @@ def gecko_spot(name='gecko_spot'):
         json.dump(export, fp,  indent=4)
 
 
+def daocentral(name='daocentral_'):
+    link_list = []
+    data_dict = dict()
+    # populating links first
+    result = requests.get("https://daocentral.com/explore/")
+    soup = BeautifulSoup(result.text, 'html.parser')
+    daos = soup.find_all('div', attrs={'class': 'not-prose'})
+    # go through table of links
+    for dao in daos:
+        try:
+            res = dao.find('a')
+            link = 'https://daocentral.com/' + res.attrs['href']
+            link_list.append(link)
+        except:
+            print('fail')
+
+    # open each link and get the links from the pacge
+    for dao_link in link_list:
+        try:
+            page = requests.get(dao_link)
+            soup = BeautifulSoup(page.text, 'html.parser')
+            title = soup.find('h1', attrs={
+                'class': 'font-cal text-3xl sm:text-5xl tracking-wide'}).text
+
+            websites = soup.find('div', attrs={
+                'class': 'flex md:justify-start justify-center items-center space-x-3 mt-4'})
+            websites_a = websites.find_all('a')
+            print(title)
+            # if infomation can't be found just have empty string to keep data consistent for later
+            web = ''
+            twitter = ''
+            discord = ''
+            for tag_a in websites_a:
+                if tag_a.find('p', attrs={"class": "hidden lg:block"}).text == 'Website':
+                    web = tag_a.attrs['href']
+                if tag_a.find('p', attrs={"class": "hidden lg:block"}).text == 'Twitter':
+                    twitter = tag_a.attrs['href']
+                if tag_a.find('p', attrs={"class": "hidden lg:block"}).text == 'Discord':
+                    discord = tag_a.attrs['href']
+            data_dict[title] = {'website': web,
+                                'twitter': twitter,
+                                'discord': discord}
+        except:
+            print('fail2')
+
+    export = {'source': 'CoinGecko', 'websites': data_dict}
+    with open(name + '.json', 'w') as fp:
+        json.dump(export, fp,  indent=4)
+
+
 def dapp_rank(name='dappradar_'):
 
     # open the ranking list go through each row of the table
@@ -178,6 +229,57 @@ def dapp_rank(name='dappradar_'):
                 print('furl', url)
         with open(name + str(page) + '.json', 'w') as fp:
             json.dump(dict_name, fp,  indent=4)
+
+
+def deepdao(name='deepdao_'):
+
+    # open the ranking list go through each row of the table
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    # driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    url = "https://deepdao.io/organizations"
+
+    driver.get(url)
+    time.sleep(2)
+    soup = BeautifulSoup(driver.page_source, 'lxml')
+    # This parts needs to be updated whenever we fetch because the change the class name
+    table = soup.find_all('div', attrs={
+        'styles_tableRow__M0cR-'})
+    dict_name = {}
+
+    # for each website get the link and open the deepdao inner website
+    for row in range(1, len(table)):
+        try:
+            driver.find_element(By.XPATH, "//span[.='{}']".format(row)).click()
+            time.sleep(2)
+            soup = BeautifulSoup(driver.page_source, 'lxml')
+            title = soup.find(
+                'h2', attrs={'class': 'styles_organizationName__14PZx'}).text
+
+            title = ''
+            twitter_url = ''
+            discord_url = ''
+            address_tag = ''
+
+            try:
+                # we put address before title in case if we don't have an address we don't title as well
+                address_tag = soup.find('img', attrs={
+                                        'src': '/static/media/website_logo_white.b2a32920.svg'}).parent.attrs['href']
+                twitter_url = soup.find('img', attrs={
+                    'src': '/static/media/twitter_logo_white.d7beecf1.svg'}).parent.attrs['href']
+                discord_url = soup.find('img', attrs={
+                    'src': '/static/media/discord_logo_white.0b3d7d68.svg'}).parent.attrs['href']
+            except:
+                print('didnt get twitter')
+            dict_name[title] = {'website': address_tag,
+                                'twitter': twitter_url, 'discord': discord_url, 'chain': []}
+            driver.execute_script("window.history.go(-1)")
+            time.sleep(2)
+        except:
+            print('furl', url)
+    with open(name + '.json', 'w') as fp:
+        json.dump(dict_name, fp,  indent=4)
 
 
 def dapp_clean(path, new_path):
@@ -316,6 +418,48 @@ def coinmarket_nft(name='coin_nft'):
                 chain = row.find(
                     'span', attrs={'class': 'logo'}).text
                 print(title)
+            except:
+                print('dont work')
+            # putting chain in list for consistency of aggregating data later
+            dict_name[title] = {'website': address_tag, 'chain': [chain]}
+    export = {'source': 'CoinMarketCap', 'websites': dict_name}
+    with open(name + '.json', 'w') as fp:
+        json.dump(export, fp,  indent=4)
+
+
+def coinmarket_dao(name='coin_dao'):
+
+    dict_name = {}
+    driver = webdriver.Chrome(ChromeDriverManager().install())
+    for page in range(1, 3):
+        url = 'https://coinmarketcap.com/view/dao/?page='+str(page)
+
+        driver.get(url)
+        # you have to scroll down to get the
+        time.sleep(3)
+        for i in range(1, 21):
+            driver.execute_script(
+                "window.scrollTo(0, {num}*document.body.scrollHeight/{denum});".format(num=i, denum=10))
+            time.sleep(0.5)
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        table = soup.find('tbody')  # getting the table
+        for row in table:
+            address_tag = ''
+            title = ''
+            chain = ''
+            try:
+                res = row.find('a').attrs['href']
+                url = 'https://coinmarketcap.com' + res
+                result = requests.get(url)
+                soup = BeautifulSoup(result.text, 'html.parser')
+
+                title = soup.find(
+                    'h2', attrs={'class': 'sc-1q9q90x-0 jCInrl h1'}).text
+                print(title)
+                content = soup.find(
+                    'div', attrs={'class': 'sc-16r8icm-0 sc-10up5z1-1 eUVvdh'})
+                address_tag = content.find_all('a')[0].attrs['href']
+
             except:
                 print('dont work')
             # putting chain in list for consistency of aggregating data later
