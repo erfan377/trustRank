@@ -15,15 +15,17 @@ import tweepy
 from constants import *
 
 
-def gecko_nft(name='gecko_nft'):
+def gecko_nft(name='gecko_nft', low=0, high=100):
     link_list = []
     nft_dict = dict()
     # populating links first
-    for page in range(1, 3):
+    driver = webdriver.Chrome(ChromeDriverManager().install())
+    for page in range(low, high):
         print('page', page)
-        result = requests.get(
-            "https://www.coingecko.com/en/nft?page=" + str(page))
-        soup = BeautifulSoup(result.text, 'html.parser')
+
+        driver.get("https://www.coingecko.com/en/nft?page=" + str(page))
+
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
         nfts = soup.find_all('tr')
         # go through table of links
         for nft in nfts:
@@ -37,13 +39,12 @@ def gecko_nft(name='gecko_nft'):
     # open each link and get the links from the pacge
     for nft_link in link_list:
         try:
-            nft_page = requests.get(nft_link)
-            soup = BeautifulSoup(nft_page.text, 'html.parser')
+            driver.get(nft_link)
+            soup = BeautifulSoup(driver.page_source, 'html.parser')
             title = soup.find('h1', attrs={
                 'class': 'tw-text-3xl tw-font-extrabold tw-text-gray-900 dark:tw-text-white tw-ml-3'})
             websites = soup.find_all('a', attrs={'class': 'mr-4'})
-
-            # cleaning the token ids from the names
+            # # cleaning the token ids from the names
             clean_title = title.text[1:-1]
             clean_title = re.sub("\(.*?\)", "", clean_title).strip()
 
@@ -58,25 +59,25 @@ def gecko_nft(name='gecko_nft'):
                     twitter = tag_a.attrs['href']
                 if tag_a.text == 'Discord':
                     discord = tag_a.attrs['href']
-            nft_dict[clean_title] = {'website': web,
-                                     'twitter': twitter,
-                                     'discord': discord}
-        except:
-            print('fail2')
+            nft_dict[title] = {'website': web,
+                               'twitter': twitter,
+                               'discord': discord}
+        except Exception as e:
+            print('fail2', e)
 
     export = {'source': 'CoinGecko', 'websites': nft_dict}
     with open(name + '.json', 'w') as fp:
         json.dump(export, fp,  indent=4)
 
 
-def gecko_spot(name='gecko_spot'):
+def gecko_spot(name='gecko_spot', low=0, high=100):
 
     link_list = []
-    for page in range(1, 7):
+    driver = webdriver.Chrome(ChromeDriverManager().install())
+    for page in range(low, high):
         print('page', page)
-        result = requests.get(
-            "https://www.coingecko.com/en/exchanges?page=" + str(page))
-        soup = BeautifulSoup(result.text, 'html.parser')
+        driver.get("https://www.coingecko.com/en/exchanges?page=" + str(page))
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
         table = soup.find('tbody', attrs={
             'data-target': 'exchanges-list.tableRows'})
         exchgs = table.find_all('tr')
@@ -92,8 +93,8 @@ def gecko_spot(name='gecko_spot'):
     exchg_dict = dict()
     for link in link_list:
         try:
-            new_page = requests.get(link)
-            soup = BeautifulSoup(new_page.text, 'html.parser')
+            driver.get(link)
+            soup = BeautifulSoup(driver.page_source, 'html.parser')
             section = soup.find('div', text='Website')
             parent = section.parent
             # we put address before title in case if we don't have an address we don't title as well
@@ -156,19 +157,19 @@ def daocentral(name='daocentral_'):
         except:
             print('fail2')
 
-    export = {'source': 'CoinGecko', 'websites': data_dict}
+    export = {'source': 'DAOCentral', 'websites': data_dict}
     with open(name + '.json', 'w') as fp:
         json.dump(export, fp,  indent=4)
 
 
-def dapp_rank(name='dappradar_'):
+def dapp_rank(name='dappradar_', low=0, high=100):
 
     # open the ranking list go through each row of the table
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
     # driver = webdriver.Chrome(options=options)
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-    for page in range(90, 400):
+    for page in range(low, high):
         url = "https://dappradar.com/rankings/{page}".format(
             page=page)
 
@@ -179,7 +180,7 @@ def dapp_rank(name='dappradar_'):
         time.sleep(5)
         # This parts needs to be updated whenever we fetch because the change the class name
         table = soup.find('div', attrs={
-            'sc-bOtlzW lwvxT rankings-table'})
+            'sc-ePsPkC jpnrxT rankings-table'})
         rows = table.find_all('a')
         dict_name = {}
 
@@ -188,7 +189,7 @@ def dapp_rank(name='dappradar_'):
             try:
                 surl = 'https://dappradar.com' + row.attrs['href']
                 chains = row.find_all(
-                    'div',  attrs={'class': 'sc-ljMRFG ikDqTv'})
+                    'div',  attrs={'class': 'sc-gLTcDU iQdKRx'})
 
                 # save list of chains
                 chain_list = []
@@ -202,7 +203,6 @@ def dapp_rank(name='dappradar_'):
                     ChromeDriverManager().install(), options=options)
                 driver.get(surl)
                 soup = BeautifulSoup(driver.page_source, 'lxml')
-
                 title_box = soup.find('div', attrs={'class':
                                                     'article-page__brand-info'})
                 title = ''
@@ -213,7 +213,7 @@ def dapp_rank(name='dappradar_'):
                 try:
                     # we put address before title in case if we don't have an address we don't title as well
                     address_tag = soup.find(
-                        'a', attrs={'class': 'sc-kOyqGX hDjVuk'}).attrs['href']
+                        'a', attrs={'class': 'sc-bxdjLI fnXxvA'}).attrs['href']
                     title = title_box.find('h1').text
                     twitter = soup.find('div', attrs={'data-original-title':
                                                       'twitter'})
@@ -231,12 +231,11 @@ def dapp_rank(name='dappradar_'):
             json.dump(dict_name, fp,  indent=4)
 
 
-def deepdao(name='deepdao_'):
+def deepdao(name='deepdao_', low=1, high=100):
 
     # open the ranking list go through each row of the table
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
-    # driver = webdriver.Chrome(options=options)
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     url = "https://deepdao.io/organizations"
 
@@ -249,14 +248,14 @@ def deepdao(name='deepdao_'):
     dict_name = {}
 
     # for each website get the link and open the deepdao inner website
-    for row in range(1, len(table)):
+    for row in range(low, high):
         try:
             driver.find_element(By.XPATH, "//span[.='{}']".format(row)).click()
             time.sleep(2)
             soup = BeautifulSoup(driver.page_source, 'lxml')
             title = soup.find(
                 'h2', attrs={'class': 'styles_organizationName__14PZx'}).text
-
+            print(title)
             title = ''
             twitter_url = ''
             discord_url = ''
@@ -278,8 +277,10 @@ def deepdao(name='deepdao_'):
             time.sleep(2)
         except:
             print('furl', url)
+            time.sleep(120)
+    export = {'source': 'DeepDAO', 'websites': dict_name}
     with open(name + '.json', 'w') as fp:
-        json.dump(dict_name, fp,  indent=4)
+        json.dump(export, fp,  indent=4)
 
 
 def dapp_clean(path, new_path):
@@ -312,13 +313,13 @@ def dapp_clean(path, new_path):
             json.dump(export, fp,  indent=4)
 
 
-def cryptoslam(name='cryptoslam'):
+def cryptoslam(name='cryptoslam', low=1, high=100):
 
     driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.get('https://cryptoslam.io/nfts')
     dict_name = {}
 
-    for page in range(1, 5):
+    for page in range(low, high):
         soup = BeautifulSoup(driver.page_source, 'lxml')
         table = soup.find_all('tr')
         for row in table:
@@ -392,11 +393,11 @@ def coinmarket_dex(name='coin_spot'):
         json.dump(export, fp,  indent=4)
 
 
-def coinmarket_nft(name='coin_nft'):
+def coinmarket_nft(name='coin_nft', low=1, high=100):
 
     dict_name = {}
     driver = webdriver.Chrome(ChromeDriverManager().install())
-    for page in range(1, 21):
+    for page in range(low, high):
         url = 'https://coinmarketcap.com/nft/collections/?page='+str(page)
 
         driver.get(url)
@@ -415,11 +416,11 @@ def coinmarket_nft(name='coin_nft'):
             try:
                 address_tag = row.find('a').attrs['href']
                 title = row.find('span').text
+                print(title)
                 chain = row.find(
                     'span', attrs={'class': 'logo'}).text
-                print(title)
-            except:
-                print('dont work')
+            except Exception as e:
+                print('dont work', address_tag, e)
             # putting chain in list for consistency of aggregating data later
             dict_name[title] = {'website': address_tag, 'chain': [chain]}
     export = {'source': 'CoinMarketCap', 'websites': dict_name}
@@ -427,11 +428,11 @@ def coinmarket_nft(name='coin_nft'):
         json.dump(export, fp,  indent=4)
 
 
-def coinmarket_dao(name='coin_dao'):
+def coinmarket_dao(name='coin_dao', low=1, high=100):
 
     dict_name = {}
     driver = webdriver.Chrome(ChromeDriverManager().install())
-    for page in range(1, 3):
+    for page in range(low, high):
         url = 'https://coinmarketcap.com/view/dao/?page='+str(page)
 
         driver.get(url)
@@ -467,6 +468,11 @@ def coinmarket_dao(name='coin_dao'):
     export = {'source': 'CoinMarketCap', 'websites': dict_name}
     with open(name + '.json', 'w') as fp:
         json.dump(export, fp,  indent=4)
+
+
+# def clean_aggregate(new, old, ignore, output):
+#     newf = open(new)
+#     data = json.load(f)
 
 
 def aggregate(path, new_path='all'):
