@@ -1,3 +1,4 @@
+from importlib import find_loader
 from traceback import TracebackException
 import requests
 from bs4 import BeautifulSoup
@@ -24,6 +25,9 @@ def gecko_nft(name='gecko_nft', low=0, high=100):
         print('page', page)
 
         driver.get("https://www.coingecko.com/en/nft?page=" + str(page))
+        for i in range(1, 21):
+            driver.execute_script(
+                "window.scrollTo(0, {num}*document.body.scrollHeight/{denum});".format(num=i, denum=10))
 
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         nfts = soup.find_all('tr')
@@ -37,12 +41,14 @@ def gecko_nft(name='gecko_nft', low=0, high=100):
                 print('fail')
 
     # open each link and get the links from the pacge
-    for nft_link in link_list:
+    for i in range(len(link_list)):
+        nft_link = link_list[i]
         try:
             driver.get(nft_link)
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             title = soup.find('h1', attrs={
                 'class': 'tw-text-3xl tw-font-extrabold tw-text-gray-900 dark:tw-text-white tw-ml-3'})
+
             websites = soup.find_all('a', attrs={'class': 'mr-4'})
             # # cleaning the token ids from the names
             clean_title = title.text[1:-1]
@@ -59,13 +65,16 @@ def gecko_nft(name='gecko_nft', low=0, high=100):
                     twitter = tag_a.attrs['href']
                 if tag_a.text == 'Discord':
                     discord = tag_a.attrs['href']
-            nft_dict[title] = {'website': web,
-                               'twitter': twitter,
-                               'discord': discord}
+            nft_dict[clean_title] = {'website': web,
+                                     'twitter': twitter,
+                                     'discord': discord}
         except Exception as e:
+            time.sleep(120)
             print('fail2', e)
+            i -= 1
 
     export = {'source': 'CoinGecko', 'websites': nft_dict}
+
     with open(name + '.json', 'w') as fp:
         json.dump(export, fp,  indent=4)
 
@@ -91,7 +100,8 @@ def gecko_spot(name='gecko_spot', low=0, high=100):
                 print('fail')
 
     exchg_dict = dict()
-    for link in link_list:
+    for i in range(len(link_list)):
+        link = link_list[i]
         try:
             driver.get(link)
             soup = BeautifulSoup(driver.page_source, 'html.parser')
@@ -104,8 +114,10 @@ def gecko_spot(name='gecko_spot', low=0, high=100):
             clean_title = title.text[1:-1]
             clean_title = re.sub("\(.*?\)", "", clean_title).strip()
             exchg_dict[clean_title] = {'website': url}
-        except:
-            print('fail2')
+        except Exception as e:
+            print('fail2', e)
+            time.sleep(120)
+            i -= 1
 
     export = {'source': 'CoinGecko', 'websites': exchg_dict}
     with open(name + '.json', 'w') as fp:
@@ -256,7 +268,6 @@ def deepdao(name='deepdao_', low=1, high=100):
             title = soup.find(
                 'h2', attrs={'class': 'styles_organizationName__14PZx'}).text
             print(title)
-            title = ''
             twitter_url = ''
             discord_url = ''
             address_tag = ''
@@ -273,14 +284,15 @@ def deepdao(name='deepdao_', low=1, high=100):
                 print('didnt get twitter')
             dict_name[title] = {'website': address_tag,
                                 'twitter': twitter_url, 'discord': discord_url, 'chain': []}
+            export = {'source': 'DeepDAO', 'websites': dict_name}
+            with open(name + str(row) + '.json', 'w') as fp:
+                json.dump(export, fp,  indent=4)
+            time.sleep(4)
+
             driver.execute_script("window.history.go(-1)")
-            time.sleep(2)
+            time.sleep(3)
         except:
             print('furl', url)
-            time.sleep(120)
-    export = {'source': 'DeepDAO', 'websites': dict_name}
-    with open(name + '.json', 'w') as fp:
-        json.dump(export, fp,  indent=4)
 
 
 def dapp_clean(path, new_path):
@@ -306,7 +318,6 @@ def dapp_clean(path, new_path):
                 # if can't load the url delete the key
                 data[name]['website'] = ""
                 print('didn work')
-            driver.close()
 
         export = {'source': 'DappRadar', 'websites': data}
         with open(new_path + '/' + item, 'w') as fp:
@@ -470,9 +481,19 @@ def coinmarket_dao(name='coin_dao', low=1, high=100):
         json.dump(export, fp,  indent=4)
 
 
-# def clean_aggregate(new, old, ignore, output):
-#     newf = open(new)
-#     data = json.load(f)
+def clean_aggregate(new, old, ignore, output):
+    new_data = json.load(open(new))
+    old_data = json.load(open(old))
+    ignore_data = json.load(open(ignore))
+    final_dict = dict()
+    for key in new_data:
+        if key in old_data or key in ignore_data:
+            pass
+        else:
+            final_dict[key] = new_data[key]
+    print(len(final_dict))
+    with open(output + '.json', 'w') as fp:
+        json.dump(final_dict, fp,  indent=4)
 
 
 def aggregate(path, new_path='all'):
@@ -508,7 +529,6 @@ def aggregate(path, new_path='all'):
                                     'chain': set(),
                                     'twitter': None,
                                     'discord': None}
-                driver = webdriver.Chrome(ChromeDriverManager().install())
 
             else:
                 # if we have seen the netloc we just add the new source we're getting it from
@@ -538,6 +558,53 @@ def aggregate(path, new_path='all'):
         json.dump(dict_all, fp,  indent=4)
 
 
+def extension_check(path, lookup='safe'):
+
+    f = open(path)
+    data = json.load(f)
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    options.add_extension('./PhishFort---Protect.crx')
+    options.add_extension('./UPPward--Network-Defence-Security-.crx')
+    options.add_extension('./WOT-Website-Security---Browsing-Protection.crx')
+    options.add_extension('./Hexatorch.crx')
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    driver.get('https://www.google.com/')
+    val = input("press enter to continue")
+    phishfort = 0
+    uppward = 0
+    wot = 0
+    key_list = list(data[lookup].keys())
+    web = "https://" + key_list[0]
+    print(0, " ", web)
+    driver.get(web)
+    i = 0
+    while i < len(key_list):
+        val = input(
+            " f for phishfot \n u for uppward \n w for wot \n p for print \n n for next\n")
+        if val == 'f':
+            phishfort += 1
+        elif val == 'u':
+            uppward += 1
+        elif val == 'w':
+            wot += 1
+        elif val == 'p':
+            print("phishfort ", phishfort, " uppward ", uppward, " wot ", wot)
+        elif val == 'n':
+            i += 1
+            web = "https://" + key_list[i]
+            print(i, " ", web)
+            try:
+                driver.get(web)
+            except:
+                print("failed to get website")
+                print(i, " ", web)
+                print("phishfort ", phishfort,
+                      " uppward ", uppward, " wot ", wot)
+
+    print("phishfort ", phishfort, " uppward ", uppward, " wot ", wot)
+
+
 def twitter_fetch(url):
 
     auth = tweepy.OAuth1UserHandler(
@@ -563,6 +630,28 @@ def twitter_fetch(url):
     except Exception as e:
         print(e)
         return {"follower_cnt":  None, "link_list": None}
+
+
+def filter(load_name, save_name="filtered_all"):
+    """filter the curated JSON from the websites based on your criteria
+
+    Args:
+        load_name (str): input JSON
+        save_name (str, optional): Filtered JSON name to save. Defaults to "filtered_all".
+    """
+    f = open(load_name)
+    data = json.load(f)
+    filtered_data = {}
+    i = 0  # count how many are kept
+    for url in data:
+        detail = data[url]
+        # determined how many sources it should have been appeared in
+        if len(detail["sources"]) > 1:
+            filtered_data[url] = detail
+            i += 1
+    print(i)
+    with open(save_name + '.json', 'w') as fp:
+        json.dump(filtered_data, fp,  indent=4)
 
 
 if __name__ == '__main__':

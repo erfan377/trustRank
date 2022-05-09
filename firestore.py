@@ -7,28 +7,6 @@ from urllib.parse import urlparse
 import fire
 
 
-def filter(load_name, save_name="filtered_all"):
-    """filter the curated JSON from the websites based on your criteria
-
-    Args:
-        load_name (str): input JSON
-        save_name (str, optional): Filtered JSON name to save. Defaults to "filtered_all".
-    """
-    f = open(load_name)
-    data = json.load(f)
-    filtered_data = {}
-    i = 0  # count how many are kept
-    for url in data:
-        detail = data[url]
-        # determined how many sources it should have been appeared in
-        if len(detail["sources"]) > 1:
-            filtered_data[url] = detail
-            i += 1
-    print(i)
-    with open(save_name + '.json', 'w') as fp:
-        json.dump(filtered_data, fp,  indent=4)
-
-
 def add_data_online(documentID, netloc, sources, url_to_name, name_to_url, db, document, appending=False):
     # if url or name exists in the firestore, resolve the issue
     if netloc in url_to_name or documentID in name_to_url:
@@ -139,7 +117,7 @@ def get_online_data(db, collection):
     return name_to_url, url_to_name
 
 
-def get_online_stats(key_file="hexatorch-erfan.json"):
+def get_online_stats(save=False, output="stats.json", key_file="hexatorch-erfan.json"):
     """Read the firestore database and store its values
     in the mapping of URLs to the document they're saved under
     or the mapping of the names to the URLs it contains
@@ -165,6 +143,10 @@ def get_online_stats(key_file="hexatorch-erfan.json"):
     print('Number of safe urls', len(url_to_name_safe))
     print('Number of bad documents', len(name_to_url_bad))
     print('Number of bad urls', len(url_to_name_bad))
+    if save:
+        print('Saving stats to', output)
+        json.dump({"safe": url_to_name_safe,
+                  "bad": url_to_name_bad}, open(output, 'w'))
 
 
 def upload_manual(name, document, key_file="hexatorch-erfan.json", ):
