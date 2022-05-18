@@ -17,6 +17,8 @@ function list for fetching data:
 - coinmarket_dex (CoinMarketCap)
 - coinmarket_nft (CoinMarketCap)
 
+For comparison, download the corrosponding extension Crx files and run the `python scraping.py extension_check [Path to dataset]`
+
 for dappradar you need to clean the data after fetching them. Put the exported jsons in a folder and run the `dapp_clean` function like  
 `python scraping.py dapp_clean [folder containing original jsons] [folder to export the clean jsons into]`
 
@@ -25,7 +27,7 @@ Later you have to put the outputs from all the scraping functions into a folder 
 
 ## How to upload data to Firestore
 
-function list for fetching data:
+function list for uploading data:
  - `filter`: function to filter json output data from the `aggregate` funtion based on paramaters you want
    - `python firestore.py filter example_all.json`
  - `upload_safe`: upload json to the firestore database.
